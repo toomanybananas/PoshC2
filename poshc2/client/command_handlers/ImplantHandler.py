@@ -22,7 +22,7 @@ from prompt_toolkit.history import FileHistory
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
 from prompt_toolkit.styles import Style
 from datetime import datetime, timedelta
-
+from urllib.request import urlopen
 
 def catch_exit(signum, frame):
     sys.exit(0)

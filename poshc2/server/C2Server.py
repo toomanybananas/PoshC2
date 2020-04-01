@@ -304,7 +304,7 @@ class MyHandler(BaseHTTPRequestHandler):
             shellctr_user = os.getenv("SHELLCTR_USER")
             if shellctr_host is not None and shellctr_user is not None:
                 try:
-                    urlopen("http://" + shellctr_host + "/add?host=" + IPAddress.split(":")[0] + "&user=" + shellctr_user + "&source=poshc2&annotation=" + newImplant.ImplantID)
+                    urlopen("http://" + shellctr_host + "/add?host=" + IPAddress.split(":")[0] + "&user=" + shellctr_user + "&source=poshc2&annotation=" + str(newImplant.ImplantID))
                 except:
                     pass
         else:
