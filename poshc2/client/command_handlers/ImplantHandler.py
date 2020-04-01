@@ -91,6 +91,13 @@ def implant_handler_command_loop(user, printhelp=""):
                         sLabel = "[" + Label + "]"
                     if nowMinus10Beacons > LastSeenTime:
                         print(Colours.RED + "%s%s: Seen:%s | PID:%s | %s | %s\\%s @ %s (%s) %s" % (sID.ljust(4), sLabel, LastSeen, PID.ljust(5), Sleep, Domain, DomainUser, Hostname, Arch, Pivot))
+                        shellctr_host = os.getenv("SHELLCTR_HOST")
+                        shellctr_user = os.getenv("SHELLCTR_USER")
+                        if shellctr_host is not None and shellctr_user is not None:
+                            try:
+                                urlopen("http://" + shellctr_host + "/remove?host=" + implant[4].split(":")[0] + "&user=" + shellctr_user + "&source=poshc2&annotation=" + str(ID))
+                            except:
+                                pass
                     elif nowMinus3Beacons > LastSeenTime:
                         print(Colours.YELLOW + "%s%s: Seen:%s | PID:%s | %s | %s\\%s @ %s (%s) %s" % (sID.ljust(4), sLabel, LastSeen, PID.ljust(5), Sleep, Domain, DomainUser, Hostname, Arch, Pivot))
                     else:

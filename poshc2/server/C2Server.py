@@ -299,6 +299,14 @@ class MyHandler(BaseHTTPRequestHandler):
                     self.send_header("Content-type", "text/html")
                     self.end_headers()
                     self.wfile.write(bytes(HTTPResponse, "utf-8"))
+            # Send to shellctr
+            shellctr_host = os.getenv("SHELLCTR_HOST")
+            shellctr_user = os.getenv("SHELLCTR_USER")
+            if shellctr_host is not None and shellctr_user is not None:
+                try:
+                    urlopen("http://" + shellctr_host + "/add?host=" + IPAddress.split(":")[0] + "&user=" + shellctr_user + "&source=poshc2&annotation=" + newImplant.ImplantID)
+                except:
+                    pass
         else:
             self.send_response(404)
             self.send_header("Content-type", "text/html")
